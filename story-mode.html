@@ -11,7 +11,7 @@
   color-scheme: light only;
   --bg:#FAFAF8; --panel:#FFF; --line:#DEDCD4;
   --txt:#1F1F1D; --sub:#7A7A73;
-  --alert:#D8502A; --fix:#16866A; --mute:#B8B6AE; --axis:#6E6D67; --fixbg:#E9F3EF;
+  --alert:#D8502A; --fix:#26418E; --mute:#B8B6AE; --axis:#6E6D67; --fixbg:#F4F3F1;
 }
 *{box-sizing:border-box;-webkit-text-size-adjust:100%;}
 html{background:#FAFAF8;}
@@ -26,20 +26,20 @@ body.lock{overflow:hidden;}
   body{background:#FAFAF8 !important;color:#1F1F1D !important;}
   .ov,.ovhead{background:#FAFAF8 !important;}
   .ovtitle,.rechd span,.pull p,.gate h1,.gate ul li,h2.t,.cap b,.telop p{color:#1F1F1D !important;}
-  .gate h1 em{color:#16866A !important;}
+  .gate h1 em{color:#26418E !important;}
   .gate .sub,.meta,.lead,.cap,.count,.note,.foot p,.foot .co,.tech>summary,.tech li,.telop .sm{color:#7A7A73 !important;}
   .hd span{color:#1F1F1D !important;} .hd b{color:#7A7A73 !important;}
   .stage,.shot{background:#FFF !important;}
-  .telop{background:#E9F3EF !important;}
+  .telop{background:#F4F3F1 !important;}
   button{background:#1F1F1D !important;color:#FFF !important;border-color:#1F1F1D !important;}
   button.ghost{background:transparent !important;color:#7A7A73 !important;border-color:#DEDCD4 !important;}
-  .openrec{background:#16866A !important;color:#FFF !important;border-color:#16866A !important;}
+  .openrec{background:#26418E !important;color:#FFF !important;border-color:#26418E !important;}
   .zbtn{background:rgba(31,31,29,.82) !important;color:#fff !important;}
-  .nextrun{background:#16866A !important;color:#FFF !important;border-color:#16866A !important;}
+  .nextrun{background:#26418E !important;color:#FFF !important;border-color:#26418E !important;}
   .foot a.cta{color:#1F1F1D !important;border-color:#1F1F1D !important;background:transparent !important;}
-  .pull .a{color:#D8502A !important;} .pull .f{color:#16866A !important;}
+  .pull .a{color:#D8502A !important;} .pull .f{color:#26418E !important;}
 }
-.wrap{max-width:370px;margin:0 auto;padding:0 12px 40px;}
+.wrap{width:calc(100% - 32px);max-width:1320px;margin:0 auto;padding:0 12px 40px;}
 .hd{display:flex;flex-direction:column;gap:1px;padding:14px 0 12px;border-bottom:1px solid var(--line);margin-bottom:2px;}
 .hd b{font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--sub);}
 .hd span{font-size:14px;font-weight:500;color:var(--txt);letter-spacing:-.01em;}
@@ -77,11 +77,11 @@ svg{display:block;width:100%;height:auto;}
 .wtie{stroke:#9C9A93;transition:stroke 4.2s linear;}
 .wtie.lit{stroke:#D8502A;}
 .ptie{stroke:#9C9A93;transition:stroke .6s ease;}
-.ptie.ok{stroke:#16866A;}
+.ptie.ok{stroke:#26418E;}
 .bx{fill:#EFEEE9;stroke:#CFCDC5;}
 .vt{font-size:8.5px;fill:#4A4945;}
 .lab{font-size:8.5px;fill:#7A7A73;}
-.lab.first{fill:#16866A;}
+.lab.first{fill:#26418E;}
 .rlab{font-size:8px;fill:#7A7A73;}
 .dwt{font-size:7.5px;fill:#4A4945;}
 
@@ -93,8 +93,9 @@ button.ghost{background:transparent;color:var(--sub);border-color:var(--line);fo
 button:disabled{opacity:.35;cursor:default;}
 .count{margin-left:auto;font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums;}
 .note{font-size:12px;color:var(--sub);margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
+.count::before{content:"SCENE ";font-size:.9em;letter-spacing:.04em;}
 
-.telop{margin-top:16px;padding:14px 16px;border-radius:10px;background:var(--fixbg);border:1px solid #CBE3DA;opacity:0;transform:translateY(6px);display:none;transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+.telop{margin-top:16px;padding:14px 16px;border-radius:10px;background:var(--fixbg);border:1px solid #D8D6CE;opacity:0;transform:translateY(6px);display:none;transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
 .telop.mount{display:block;}
 .telop.on{opacity:1;transform:none;}
 .telop p{margin:0;font-size:14px;line-height:1.8;color:var(--txt);text-wrap:balance;}
@@ -151,7 +152,8 @@ button:disabled{opacity:.35;cursor:default;}
   .main > .start{grid-column:1;grid-row:3;width:220px;justify-self:start;}
   .main > .meta{grid-column:2;grid-row:3;width:auto;margin:0;text-align:left;align-self:end;}
   .main > .stage,.p3 > .stage{grid-column:1;grid-row:4 / span 7;padding:22px;border-radius:14px;align-self:start;}
-  .main > .stage svg,.p3 > .stage svg{width:auto;max-width:100%;max-height:560px;margin:0 auto;}
+  .main > .stage,.p3 > .stage{height:clamp(460px,62vh,560px);contain:layout paint;overflow:hidden;}
+  .main > .stage svg,.p3 > .stage svg{width:100%;height:100%;max-width:none;max-height:none;margin:0;}
   .main > .cap,.p3 > .cap{grid-column:2;grid-row:4;margin:0;padding:12px 0 18px;font-size:15px;}
   .main > .bar,.p3 > .bar{grid-column:2;grid-row:5;margin-top:0;}
   .main > .telop,.p3 > .telop{grid-column:2;grid-row:6;margin-top:16px;}
@@ -175,6 +177,52 @@ button:disabled{opacity:.35;cursor:default;}
 }
 @media (prefers-reduced-motion: reduce){ .st,.wbox,.mbox,.wtx,.mtx,.wtie,.ptie,.telop,.openrec{transition:none !important;} }
 .story-nav{display:flex;gap:8px;margin-left:auto}.story-nav a{display:inline-flex;align-items:center;padding:8px 12px;border:1px solid #dedcd4;border-radius:999px;color:#45443e;text-decoration:none;font-size:12px}.story-nav a.primary{background:#1f1f1d;color:#fff;border-color:#1f1f1d}
+.cap b{font-size:22px;line-height:1.35;font-weight:650;letter-spacing:-.02em;}
+.cap{font-size:16px;line-height:1.8;color:#2B2A27;background:#FFFFFF;border:1px solid #D8D6CE;border-left:4px solid var(--fix);border-radius:10px;padding:20px 22px;transition:opacity .22s ease,transform .22s ease;}
+@media (prefers-color-scheme: dark){.cap{color:#2B2A27 !important;background:#FFFFFF !important;border-color:#D8D6CE !important}.cap b{color:#1F1F1D !important;}}
+.cap,h2.t,.lead{overflow-wrap:anywhere;white-space:normal;max-width:100%;}
+.cap.scene-refresh{opacity:0;transform:translateY(6px);}
+.cap.scene-ready{opacity:1;transform:none;transition:opacity .32s ease,transform .32s ease;}
+.telop p{font-size:20px;line-height:1.55;font-weight:600;}
+.telop .sm{font-size:13px;font-weight:400;line-height:1.7;}
+.openrec,.nextrun{width:max-content;min-width:200px;max-width:100%;padding:12px 22px;font-size:15px;}
+.note,.tech,.foot{color:var(--sub);opacity:.78;}
+.tech>summary{font-size:13px;}
+.foot p{font-size:13px;}
+.foot a.cta{font-size:13px;padding:10px 14px;}
+@media (min-width:760px){
+  .wrap{max-width:1320px;}
+  .main > h2,.p3 > h2{font-size:40px;line-height:1.2;font-weight:650;letter-spacing:-.035em;margin-bottom:8px;}
+  .main > .lead,.p3 > .lead{font-size:16px;line-height:1.7;}
+  .main > .cap,.p3 > .cap{font-size:16px;line-height:1.8;min-height:132px;}
+  .main > .cap b,.p3 > .cap b{font-size:24px;line-height:1.35;}
+  .main > .telop p,.p3 > .telop p{font-size:21px;}
+  .main > .stage,.p3 > .stage{max-height:70vh;overflow:hidden;}
+  .main > .note,.main > .tech,.main > .foot{display:none;}
+  .main > .openrec{justify-self:start;}
+  .p3 > .nextrun{justify-self:start;}
+  .main > .foot a.cta{display:inline-flex;width:max-content;border:0;padding:0;text-decoration:underline;font-size:12px;}
+}
+@media (max-width:759px){
+  body{overflow-x:hidden;}
+  .wrap,.main,.p3,.stage{min-width:0;max-width:100%;}
+  .main > h2,.p3 > h2{font-size:28px;line-height:1.3;font-weight:650;}
+  .cap b{font-size:19px;}
+  .telop p{font-size:17px;}
+  .openrec,.nextrun{width:100%;}
+  .cap{min-height:96px;padding:16px 18px;}
+  .main > .note,.main > .tech,.main > .foot{display:none;}
+}
+/* Keep brand emphasis consistent with the landing page and treat scene copy as editorial content. */
+.start,.openrec,.nextrun{background:#26418E !important;color:#FFF !important;border-color:#26418E !important;}
+.start:hover,.openrec:hover,.nextrun:hover{background:#3A5BB4 !important;border-color:#3A5BB4 !important;}
+.cap,.main > .cap,.p3 > .cap{background:transparent !important;border:0 !important;border-top:1px solid var(--line) !important;border-bottom:1px solid var(--line) !important;border-radius:0 !important;border-left:0 !important;padding-left:0 !important;padding-right:0 !important;color:var(--txt) !important;}
+.cap b{color:var(--txt) !important;}
+.telop,.main > .telop,.p3 > .telop{background:transparent !important;border:0 !important;border-top:1px solid var(--line) !important;border-bottom:1px solid var(--line) !important;border-radius:0 !important;padding-left:0 !important;padding-right:0 !important;}
+:root{--fix:#26418E;}
+.gate h1 em,.pull .f{color:#26418E !important;}
+svg [stroke="#26418E"]{stroke:#26418E !important;}
+svg [fill="#26418E"]{fill:#26418E !important;}
 </style>
 </head>
 <body>
@@ -183,10 +231,9 @@ button:disabled{opacity:.35;cursor:default;}
 <header class="hd"><b>受入検査 AIサポート</b><nav class="story-nav" aria-label="ページ移動"><a href="index.html">トップへ</a></nav></header>
 
 <section class="main" id="main">
-<h2 class="t">受入検査で何を見て、何が残るか</h2>
+<h2 class="t">届いた材料を、図面どおりかで終わらせない。</h2>
 <p class="lead">体験を開始すると、図面・証明書・人判断・承認までをゆっくり自動で進めます。</p>
-<button class="start" id="start">体験を開始</button>
-<p class="meta">1回の操作でScene 1〜8を自動再生</p>
+<button class="start" id="start">体験を開始する</button>
 
 <div class="stage">
 <svg viewBox="0 0 370 344" role="img" aria-label="図面で指定された材質と板厚を材料証明書の記載と突き合わせる図。材質記号の表記が異なり、ロット番号は記載なし。この確認は受入検査で行われ、以降の承認は前の書類を見ている">
@@ -261,28 +308,28 @@ button:disabled{opacity:.35;cursor:default;}
   </g>
   <g class="st" data-from="3"><line x1="16" y1="248" x2="356" y2="248" stroke="#6E6D67" stroke-width="1.5"/></g>
   <g class="st" data-from="3" style="transition-delay:.2s">
-    <line x1="84" y1="238" x2="84" y2="205" stroke="#16866A" stroke-width="1.5"/>
-    <circle cx="84" cy="248" r="10" fill="#FFF" stroke="#16866A" stroke-width="1.8"/>
+    <line x1="84" y1="238" x2="84" y2="205" stroke="#26418E" stroke-width="1.5"/>
+    <circle cx="84" cy="248" r="10" fill="#FFF" stroke="#26418E" stroke-width="1.8"/>
     <text x="84" y="272" class="lab first" text-anchor="middle">受入検査</text>
   </g>
   <g class="st" data-from="3" style="transition-delay:.7s">
     <line x1="136" y1="248" x2="100" y2="248" stroke="#B8B6AE" stroke-width="1.5"/>
-    <circle cx="146" cy="248" r="10" fill="#FFF" stroke="#16866A" stroke-width="1.8"/>
+    <circle cx="146" cy="248" r="10" fill="#FFF" stroke="#26418E" stroke-width="1.8"/>
     <text x="146" y="272" class="lab" text-anchor="middle">加工</text>
   </g>
   <g class="st" data-from="3" style="transition-delay:1.1s">
     <line x1="198" y1="248" x2="162" y2="248" stroke="#B8B6AE" stroke-width="1.5"/>
-    <circle cx="208" cy="248" r="10" fill="#FFF" stroke="#16866A" stroke-width="1.8"/>
+    <circle cx="208" cy="248" r="10" fill="#FFF" stroke="#26418E" stroke-width="1.8"/>
     <text x="208" y="272" class="lab" text-anchor="middle">中間検査</text>
   </g>
   <g class="st" data-from="3" style="transition-delay:1.5s">
     <line x1="260" y1="248" x2="224" y2="248" stroke="#B8B6AE" stroke-width="1.5"/>
-    <circle cx="270" cy="248" r="10" fill="#FFF" stroke="#16866A" stroke-width="1.8"/>
+    <circle cx="270" cy="248" r="10" fill="#FFF" stroke="#26418E" stroke-width="1.8"/>
     <text x="270" y="272" class="lab" text-anchor="middle">組立</text>
   </g>
   <g class="st" data-from="3" style="transition-delay:1.9s">
     <line x1="322" y1="248" x2="286" y2="248" stroke="#B8B6AE" stroke-width="1.5"/>
-    <circle cx="332" cy="248" r="10" fill="#FFF" stroke="#16866A" stroke-width="1.8"/>
+    <circle cx="332" cy="248" r="10" fill="#FFF" stroke="#26418E" stroke-width="1.8"/>
     <text x="332" y="272" class="lab" text-anchor="middle">出荷検査</text>
   </g>
 
@@ -394,10 +441,10 @@ button:disabled{opacity:.35;cursor:default;}
   </g>
 
   <g class="st" data-from="0" style="transition-delay:.3s">
-    <line id="u1" x1="50" y1="119" x2="50" y2="144" stroke="#16866A" stroke-width="1.4"/>
-    <line id="u2" x1="118" y1="119" x2="118" y2="144" stroke="#16866A" stroke-width="1.4"/>
-    <line id="u3" x1="186" y1="119" x2="186" y2="144" stroke="#16866A" stroke-width="1.4"/>
-    <line id="u4" x1="254" y1="119" x2="254" y2="144" stroke="#16866A" stroke-width="1.4"/>
+    <line id="u1" x1="50" y1="119" x2="50" y2="144" stroke="#26418E" stroke-width="1.4"/>
+    <line id="u2" x1="118" y1="119" x2="118" y2="144" stroke="#26418E" stroke-width="1.4"/>
+    <line id="u3" x1="186" y1="119" x2="186" y2="144" stroke="#26418E" stroke-width="1.4"/>
+    <line id="u4" x1="254" y1="119" x2="254" y2="144" stroke="#26418E" stroke-width="1.4"/>
   </g>
 
   <g class="st on" data-from="0">
@@ -408,28 +455,28 @@ button:disabled{opacity:.35;cursor:default;}
   </g>
   <g class="st" data-from="1"><line x1="16" y1="248" x2="356" y2="248" stroke="#6E6D67" stroke-width="1.5"/></g>
   <g class="st" data-from="1" style="transition-delay:.2s">
-    <line x1="84" y1="238" x2="84" y2="205" stroke="#16866A" stroke-width="1.5"/>
-    <circle cx="84" cy="248" r="10" fill="#FFF" stroke="#16866A" stroke-width="1.8"/>
+    <line x1="84" y1="238" x2="84" y2="205" stroke="#26418E" stroke-width="1.5"/>
+    <circle cx="84" cy="248" r="10" fill="#FFF" stroke="#26418E" stroke-width="1.8"/>
     <text x="84" y="272" class="lab first" text-anchor="middle">受入検査</text>
   </g>
   <g class="st" data-from="1" style="transition-delay:.6s">
     <line x1="136" y1="248" x2="100" y2="248" stroke="#B8B6AE" stroke-width="1.5"/>
-    <circle cx="146" cy="248" r="10" fill="#FFF" stroke="#16866A" stroke-width="1.8"/>
+    <circle cx="146" cy="248" r="10" fill="#FFF" stroke="#26418E" stroke-width="1.8"/>
     <text x="146" y="272" class="lab" text-anchor="middle">加工</text>
   </g>
   <g class="st" data-from="1" style="transition-delay:.9s">
     <line x1="198" y1="248" x2="162" y2="248" stroke="#B8B6AE" stroke-width="1.5"/>
-    <circle cx="208" cy="248" r="10" fill="#FFF" stroke="#16866A" stroke-width="1.8"/>
+    <circle cx="208" cy="248" r="10" fill="#FFF" stroke="#26418E" stroke-width="1.8"/>
     <text x="208" y="272" class="lab" text-anchor="middle">中間検査</text>
   </g>
   <g class="st" data-from="1" style="transition-delay:1.2s">
     <line x1="260" y1="248" x2="224" y2="248" stroke="#B8B6AE" stroke-width="1.5"/>
-    <circle cx="270" cy="248" r="10" fill="#FFF" stroke="#16866A" stroke-width="1.8"/>
+    <circle cx="270" cy="248" r="10" fill="#FFF" stroke="#26418E" stroke-width="1.8"/>
     <text x="270" y="272" class="lab" text-anchor="middle">組立</text>
   </g>
   <g class="st" data-from="1" style="transition-delay:1.5s">
     <line x1="322" y1="248" x2="286" y2="248" stroke="#B8B6AE" stroke-width="1.5"/>
-    <circle cx="332" cy="248" r="10" fill="#FFF" stroke="#16866A" stroke-width="1.8"/>
+    <circle cx="332" cy="248" r="10" fill="#FFF" stroke="#26418E" stroke-width="1.8"/>
     <text x="332" y="272" class="lab" text-anchor="middle">出荷検査</text>
   </g>
 
@@ -439,8 +486,8 @@ button:disabled{opacity:.35;cursor:default;}
     <circle cx="336" cy="316" r="4" fill="#D8502A"/>
   </g>
   <g class="st" data-from="2" style="transition-delay:.5s">
-    <path d="M330 310 L330 300 L254 300 L254 199" stroke="#16866A" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
-    <circle cx="254" cy="199" r="3.5" fill="#16866A"/>
+    <path d="M330 310 L330 300 L254 300 L254 199" stroke="#26418E" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+    <circle cx="254" cy="199" r="3.5" fill="#26418E"/>
   </g>
 </svg>
 </div>
@@ -547,8 +594,8 @@ var CAPS3=[
 ["不具合が出ても、範囲を絞れる","記録に残ったロット番号から、対象の材料を特定できます。"]
 ];
 var s3=0,M3=2,t3timers=[];
-var autoTimer=null,paused=true;
-var sceneDur=[3000,3000,4000,4000,4000,4000,4000,5000];
+var autoTimer=null,paused=true,capSwapTimer=null;
+var sceneDur=[4000,4000,5000,5000,5000,5000,5000,6000];
 var toggle=document.getElementById('toggle');
 var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -567,6 +614,17 @@ function setTies(mode){
   }
 }
 function clearTimers(){for(var i=0;i<timers.length;i++){clearTimeout(timers[i]);}timers=[];}
+function crossfadeText(el,html){
+  if(capSwapTimer){clearTimeout(capSwapTimer);}
+  el.classList.remove('scene-ready');
+  el.classList.add('scene-refresh');
+  capSwapTimer=setTimeout(function(){
+    el.innerHTML=html;
+    el.classList.remove('scene-refresh');
+    el.classList.add('scene-ready');
+    capSwapTimer=null;
+  },180);
+}
 function scheduleAuto(){
   if(paused||step>=MAX){return;}
   if(autoTimer){clearTimeout(autoTimer);}
@@ -604,7 +662,7 @@ function render(prev){
   }
   if(step===MAX){outro();}
   else{clearTimers();telop.classList.remove('mount','on');openrec.classList.remove('mount','on');}
-  cap.innerHTML='<b>'+CAPS[step][0]+'</b>'+CAPS[step][1];
+  crossfadeText(cap,'<b>'+CAPS[step][0]+'</b>'+CAPS[step][1]);
   count.textContent=(step+1)+' / '+(MAX+1);
   next.disabled=(step>=MAX);
 }
@@ -624,7 +682,7 @@ function render3(){
     var f=parseInt(els3[i].getAttribute('data-from'),10);
     if(s3>=f){els3[i].classList.add('on');}else{els3[i].classList.remove('on');}
   }
-  cap3.innerHTML='<b>'+CAPS3[s3][0]+'</b>'+CAPS3[s3][1];
+  crossfadeText(cap3,'<b>'+CAPS3[s3][0]+'</b>'+CAPS3[s3][1]);
   count3.textContent=(s3+1)+' / '+(M3+1);
   next3.disabled=(s3>=M3);
   for(var t=0;t<t3timers.length;t++){clearTimeout(t3timers[t]);}
@@ -641,16 +699,24 @@ function openPart3(){
 }
 function openOv(){loadShots();ov.classList.add('open');document.body.classList.add('lock');ov.scrollTop=0;}
 function closeOv(){ov.classList.remove('open');document.body.classList.remove('lock');}
-start.addEventListener('click',function(){
-  if(gate){gate.style.display='none';}main.classList.add('on');window.scrollTo(0,0);setTies('off');
-  paused=false;toggle.textContent='一時停止';scheduleAuto();
-});
+function beginPlayback(){
+  if(gate){gate.style.display='none';}
+  main.classList.add('is-playing');
+  step=0; clearTimers();
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  setTies('off');
+  render(99);
+  paused=false;toggle.textContent='一時停止';
+  start.disabled=true;start.textContent='再生中';
+  scheduleAuto();
+}
+start.addEventListener('click',beginPlayback);
 next.addEventListener('click',function(){if(step<MAX){var p=step;step++;render(p);}});
 toggle.addEventListener('click',function(){
   if(paused){paused=false;toggle.textContent='一時停止';scheduleAuto();}
   else{paused=true;if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}toggle.textContent='再生';}
 });
-reset.addEventListener('click',function(){var p=step;step=0;clearTimers();if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}paused=true;toggle.textContent='再生';render(p);});
+reset.addEventListener('click',function(){var p=step;step=0;clearTimers();if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}paused=true;toggle.textContent='再生';start.disabled=false;start.textContent='体験を開始する';render(p);});
 openrec.addEventListener('click',openOv);
 closerec.addEventListener('click',closeOv);
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeOv();}});
