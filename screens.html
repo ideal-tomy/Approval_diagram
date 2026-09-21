@@ -11,10 +11,20 @@
 <body class="destination screen-viewer">
   <header class="topbar">
     <a class="brand" href="index.html"><b>受入検査 AIサポート</b></a>
-    <a class="return-link" href="index.html">← トップへ戻る</a>
+    <div class="topbar-actions">
+      <a class="return-link" id="selection-return" href="#" hidden>← 紹介へ</a>
+      <a class="return-link" href="index.html">← トップへ戻る</a>
+    </div>
   </header>
   <main class="section-wrap destination-main">
-    <div class="destination-heading"><div><p class="eyebrow">実画面</p><h1>実際の業務画面を見る</h1></div><a class="return-link" href="story-mode.html">ガイド体験へ戻る →</a></div>
+    <div class="destination-heading">
+      <div>
+        <p class="eyebrow">実画面</p>
+        <h1>実際の業務画面を見る</h1>
+      </div>
+      <a class="return-link" href="story-mode.html">詳しい仕組みを見る →</a>
+    </div>
+    <p class="demo-banner" role="note">画面紹介です。タブで4画面をご覧ください。画像内のボタンは操作対象外です。</p>
     <div class="screen-tabs" role="tablist" aria-label="実画面">
       <button type="button" role="tab" id="tab-match" data-screen="match" aria-controls="screen-detail" aria-selected="true">照合</button>
       <button type="button" role="tab" id="tab-hold" data-screen="hold" aria-controls="screen-detail" aria-selected="false" tabindex="-1">保留一覧</button>
@@ -27,8 +37,6 @@
       <a class="return-link source-screen" id="source-screen" href="images/01.png" target="_blank" rel="noopener">元の実画面を開く ↗</a>
     </section>
   </main>
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
-
-

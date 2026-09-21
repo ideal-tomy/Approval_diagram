@@ -37,3 +37,5 @@ a:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
 @media(max-width:520px){.landing .hero h1{font-size:31px}.landing .feature-copy{padding:12px}.landing .feature-copy>p:not(.feature-num){min-height:60px}.destination-heading{align-items:flex-start;gap:16px}.destination-heading h1{font-size:23px}}
 
 
+
+a.feature-card{color:inherit;text-decoration:none;display:block}

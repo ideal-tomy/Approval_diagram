@@ -1,3 +1,5 @@
+.topbar-actions{display:flex;align-items:center;gap:16px}
+.demo-banner{margin:0 0 16px;padding:12px 14px;background:#eef4f8;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:13px;line-height:1.55}
 .screen-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:5px;background:#e7eef3;border:1px solid var(--line);border-radius:10px;margin-bottom:20px}
 .screen-tabs button{border:1px solid transparent;border-radius:7px;padding:11px;background:transparent;color:var(--muted);font-size:13px;font-weight:700}
 .screen-tabs button[aria-selected="true"]{background:#fff;color:var(--blue);border-color:#adc8db;box-shadow:0 2px 5px #1423310a}

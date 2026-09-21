@@ -85,8 +85,8 @@ svg{display:block;width:100%;height:auto;}
 .rlab{font-size:8px;fill:#7A7A73;}
 .dwt{font-size:7.5px;fill:#4A4945;}
 
-.cap{min-height:48px;font-size:13px;color:var(--sub);margin:14px 2px 0;text-wrap:balance;}
-.cap b{display:block;font-size:14px;font-weight:500;color:var(--txt);margin-bottom:2px;}
+.cap{min-height:0;font-size:14px;color:var(--sub);margin:12px 0 0;text-wrap:wrap;word-break:normal;line-break:auto;overflow-wrap:break-word;}
+.cap b{display:block;font-size:17px;font-weight:600;color:var(--txt);margin:0 0 6px;letter-spacing:-.02em;line-height:1.45;text-wrap:wrap;}
 .bar{display:flex;align-items:center;gap:8px;margin-top:12px;}
 button{font-family:inherit;font-size:14px;font-weight:500;padding:10px 18px;border-radius:8px;cursor:pointer;border:1px solid var(--txt);background:var(--txt);color:#fff;-webkit-appearance:none;appearance:none;}
 button.ghost{background:transparent;color:var(--sub);border-color:var(--line);font-weight:400;}
@@ -145,26 +145,33 @@ button:disabled{opacity:.35;cursor:default;}
   .wrap{max-width:1200px;padding-left:32px;padding-right:32px;}
   .hd{flex-direction:row;align-items:center;gap:12px;padding-top:18px;padding-bottom:16px;}
   .hd b{font-size:12px;}
-  .main,.p3.on{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);column-gap:36px;align-items:start;padding-top:28px;}
-  .main > h2,.main > .lead,.main > .start,.main > .meta,.p3 > h2,.p3 > .lead{grid-column:1 / -1;}
+  .main,.p3.on{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,380px);column-gap:28px;align-items:start;padding-top:28px;}
+  .main > h2,.main > .lead,.main > .meta,.p3 > h2,.p3 > .lead{grid-column:1 / -1;}
   .main > h2,.p3 > h2{font-size:22px;margin-bottom:4px;}
   .main > .lead,.p3 > .lead{font-size:14px;margin-bottom:14px;}
-  .main > .start{grid-column:1;grid-row:3;width:220px;justify-self:start;}
+  .main > .start{grid-column:1 / -1;grid-row:3;width:auto;max-width:100%;justify-self:start;margin-bottom:16px;}
   .main > .meta{grid-column:2;grid-row:3;width:auto;margin:0;text-align:left;align-self:end;}
-  .main > .stage,.p3 > .stage{grid-column:1;grid-row:4 / span 7;padding:22px;border-radius:14px;align-self:start;}
+  .main > .stage,.p3 > .stage{grid-column:1;grid-row:4 / span 8;padding:22px;border-radius:14px;align-self:start;}
   .main > .stage,.p3 > .stage{height:clamp(460px,62vh,560px);contain:layout paint;overflow:hidden;}
   .main > .stage svg,.p3 > .stage svg{width:100%;height:100%;max-width:none;max-height:none;margin:0;}
-  .main > .cap,.p3 > .cap{grid-column:2;grid-row:4;margin:0;padding:12px 0 18px;font-size:15px;}
-  .main > .bar,.p3 > .bar{grid-column:2;grid-row:5;margin-top:0;}
+  .main > .cap,.p3 > .cap{grid-column:2;grid-row:4;margin:0;padding:0;font-size:14px;}
+  .main.is-playing > .start{display:none;}
+  .main.is-playing > .stage,.p3 > .stage{grid-row:3 / span 8;}
+  .main.is-playing > .cap,.p3 > .cap{grid-row:3;}
+  .main.is-playing > .bar{grid-row:4;}
+  .p3 > .cap{grid-row:3;}
+  .p3 > .bar{grid-row:4;}
+  .main > .bar,.p3 > .bar{grid-column:2;grid-row:5;margin-top:8px;}
+  .main.is-playing > .bar{grid-row:4;}
+  .p3 > .bar{grid-row:4;}
   .main > .telop,.p3 > .telop{grid-column:2;grid-row:6;margin-top:16px;}
   .main > .openrec{grid-column:2;grid-row:7;}
   .main > .note,.p3 > .note{grid-column:2;grid-row:8;margin-top:16px;}
   .main > .tech{grid-column:2;grid-row:9;margin-top:16px;}
   .main > .foot,.p3 > .foot{grid-column:2;grid-row:10;margin-top:16px;}
-  .p3 > .bar{grid-row:5;}
-  .p3 > .telop{grid-row:6;}
-  .p3 > .note{grid-row:7;}
-  .p3 > .foot{grid-row:8;}
+  .p3 > .telop{grid-row:5;}
+  .p3 > .note{grid-row:6;}
+  .p3 > .foot{grid-row:7;}
   .ovbody{max-width:1160px;padding:26px 24px 64px;}
   .rec{margin-bottom:44px;}
   .shot.zoom .scroller{overflow-x:hidden;} .shot.zoom img{width:100%;}
@@ -177,13 +184,12 @@ button:disabled{opacity:.35;cursor:default;}
 }
 @media (prefers-reduced-motion: reduce){ .st,.wbox,.mbox,.wtx,.mtx,.wtie,.ptie,.telop,.openrec{transition:none !important;} }
 .story-nav{display:flex;gap:8px;margin-left:auto}.story-nav a{display:inline-flex;align-items:center;padding:8px 12px;border:1px solid #dedcd4;border-radius:999px;color:#45443e;text-decoration:none;font-size:12px}.story-nav a.primary{background:#1f1f1d;color:#fff;border-color:#1f1f1d}
-.cap b{font-size:22px;line-height:1.35;font-weight:650;letter-spacing:-.02em;}
-.cap{font-size:16px;line-height:1.8;color:#2B2A27;background:#FFFFFF;border:1px solid #D8D6CE;border-left:4px solid var(--fix);border-radius:10px;padding:20px 22px;transition:opacity .22s ease,transform .22s ease;}
-@media (prefers-color-scheme: dark){.cap{color:#2B2A27 !important;background:#FFFFFF !important;border-color:#D8D6CE !important}.cap b{color:#1F1F1D !important;}}
-.cap,h2.t,.lead{overflow-wrap:anywhere;white-space:normal;max-width:100%;}
-.cap.scene-refresh{opacity:0;transform:translateY(6px);}
-.cap.scene-ready{opacity:1;transform:none;transition:opacity .32s ease,transform .32s ease;}
-.telop p{font-size:20px;line-height:1.55;font-weight:600;}
+.cap b{font-size:17px;line-height:1.45;font-weight:600;letter-spacing:-.02em;}
+.cap{font-size:14px;line-height:1.7;color:var(--sub);background:transparent;border:0;padding:0;}
+.cap,h2.t,.lead{overflow-wrap:break-word;white-space:normal;max-width:100%;text-wrap:wrap;}
+.cap.scene-refresh{opacity:0;}
+.cap.scene-ready{opacity:1;transition:opacity .25s ease;}
+.telop p{font-size:16px;line-height:1.65;font-weight:600;}
 .telop .sm{font-size:13px;font-weight:400;line-height:1.7;}
 .openrec,.nextrun{width:max-content;min-width:200px;max-width:100%;padding:12px 22px;font-size:15px;}
 .note,.tech,.foot{color:var(--sub);opacity:.78;}
@@ -192,11 +198,11 @@ button:disabled{opacity:.35;cursor:default;}
 .foot a.cta{font-size:13px;padding:10px 14px;}
 @media (min-width:760px){
   .wrap{max-width:1320px;}
-  .main > h2,.p3 > h2{font-size:40px;line-height:1.2;font-weight:650;letter-spacing:-.035em;margin-bottom:8px;}
-  .main > .lead,.p3 > .lead{font-size:16px;line-height:1.7;}
-  .main > .cap,.p3 > .cap{font-size:16px;line-height:1.8;min-height:132px;}
-  .main > .cap b,.p3 > .cap b{font-size:24px;line-height:1.35;}
-  .main > .telop p,.p3 > .telop p{font-size:21px;}
+  .main > h2,.p3 > h2{font-size:30px;line-height:1.3;font-weight:650;letter-spacing:-.03em;margin-bottom:8px;}
+  .main > .lead,.p3 > .lead{font-size:15px;line-height:1.7;margin-bottom:18px;}
+  .main > .cap,.p3 > .cap{font-size:14px;line-height:1.7;min-height:0;}
+  .main > .cap b,.p3 > .cap b{font-size:17px;line-height:1.45;margin-bottom:8px;}
+  .main > .telop p,.p3 > .telop p{font-size:16px;}
   .main > .stage,.p3 > .stage{max-height:70vh;overflow:hidden;}
   .main > .note,.main > .tech,.main > .foot{display:none;}
   .main > .openrec{justify-self:start;}
@@ -206,23 +212,37 @@ button:disabled{opacity:.35;cursor:default;}
 @media (max-width:759px){
   body{overflow-x:hidden;}
   .wrap,.main,.p3,.stage{min-width:0;max-width:100%;}
-  .main > h2,.p3 > h2{font-size:28px;line-height:1.3;font-weight:650;}
-  .cap b{font-size:19px;}
-  .telop p{font-size:17px;}
+  .main > h2,.p3 > h2{font-size:24px;line-height:1.35;font-weight:650;}
+  .cap b{font-size:16px;}
+  .telop p{font-size:15px;}
   .openrec,.nextrun{width:100%;}
-  .cap{min-height:96px;padding:16px 18px;}
+  .cap{min-height:0;padding:0;margin-top:16px;}
   .main > .note,.main > .tech,.main > .foot{display:none;}
 }
-/* Keep brand emphasis consistent with the landing page and treat scene copy as editorial content. */
 .start,.openrec,.nextrun{background:#26418E !important;color:#FFF !important;border-color:#26418E !important;}
 .start:hover,.openrec:hover,.nextrun:hover{background:#3A5BB4 !important;border-color:#3A5BB4 !important;}
-.cap,.main > .cap,.p3 > .cap{background:transparent !important;border:0 !important;border-top:1px solid var(--line) !important;border-bottom:1px solid var(--line) !important;border-radius:0 !important;border-left:0 !important;padding-left:0 !important;padding-right:0 !important;color:var(--txt) !important;}
-.cap b{color:var(--txt) !important;}
+.cap,.main > .cap,.p3 > .cap{
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  padding:0 !important;
+  color:var(--txt) !important;
+}
+.cap b{display:block;color:var(--txt) !important;margin:0 0 8px;font-weight:600;}
+.cap span{display:block;font-size:14px;line-height:1.75;color:var(--sub);}
 .telop,.main > .telop,.p3 > .telop{background:transparent !important;border:0 !important;border-top:1px solid var(--line) !important;border-bottom:1px solid var(--line) !important;border-radius:0 !important;padding-left:0 !important;padding-right:0 !important;}
 :root{--fix:#26418E;}
 .gate h1 em,.pull .f{color:#26418E !important;}
 svg [stroke="#26418E"]{stroke:#26418E !important;}
 svg [fill="#26418E"]{fill:#26418E !important;}
+.main,.p3{position:relative;}
+.scene-link{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;overflow:visible;}
+svg .focus-ring{fill:none !important;stroke:none !important;pointer-events:none;}
+.cap,.cap b,.cap span{word-break:keep-all;line-break:loose;overflow-wrap:normal;text-wrap:wrap;}
+@media (max-width:759px){
+  .scene-link{display:none;}
+  .cap span{font-size:14px;line-height:1.75;}
+}
 </style>
 </head>
 <body>
@@ -231,9 +251,10 @@ svg [fill="#26418E"]{fill:#26418E !important;}
 <header class="hd"><b>受入検査 AIサポート</b><nav class="story-nav" aria-label="ページ移動"><a href="index.html">トップへ</a></nav></header>
 
 <section class="main" id="main">
-<h2 class="t">届いた材料を、図面どおりかで終わらせない。</h2>
+<h2 class="t">検査のダブルチェックにAIを加える</h2>
 <p class="lead">体験を開始すると、図面・証明書・人判断・承認までをゆっくり自動で進めます。</p>
 <button class="start" id="start">体験を開始する</button>
+<svg class="scene-link" id="scene-link" aria-hidden="true"></svg>
 
 <div class="stage">
 <svg viewBox="0 0 370 344" role="img" aria-label="図面で指定された材質と板厚を材料証明書の記載と突き合わせる図。材質記号の表記が異なり、ロット番号は記載なし。この確認は受入検査で行われ、以降の承認は前の書類を見ている">
@@ -341,10 +362,14 @@ svg [fill="#26418E"]{fill:#26418E !important;}
   <g class="st" data-from="5" style="transition-delay:.5s">
     <path d="M330 310 L330 300 L254 300 L254 199" stroke="#D8502A" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
   </g>
+  <rect class="focus-ring" id="focus1" x="8" y="4" width="288" height="80" fill="none" stroke="none"></rect>
 </svg>
 </div>
 
-<p class="cap" id="cap"><b>図面で材質と板厚が指定されている</b>材質はSUS304、板厚は10.0ミリ。図面番号はS-204です。</p>
+<div class="cap" id="cap">
+  <b>図面で材質と板厚が指定されている</b>
+  <span>材質はSUS304、板厚は10.0ミリ。図面番号はS-204です。</span>
+</div>
 
 <div class="bar">
   <button id="next" hidden>次へ</button>
@@ -386,6 +411,7 @@ svg [fill="#26418E"]{fill:#26418E !important;}
 <section class="p3" id="part3">
 <h2 class="t">検査基準を直したあとの、次の入荷</h2>
 <p class="lead">同じ図面、同じ確認項目です。</p>
+<svg class="scene-link" id="scene-link3" aria-hidden="true"></svg>
 
 <div class="stage">
 <svg viewBox="0 0 370 344" role="img" aria-label="次の入荷では材質記号が図面どおりで、ロット番号も記載されている。人の判断を要する項目がなく、不具合が出ても遡ってロット番号に到達できる">
@@ -489,10 +515,14 @@ svg [fill="#26418E"]{fill:#26418E !important;}
     <path d="M330 310 L330 300 L254 300 L254 199" stroke="#26418E" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
     <circle cx="254" cy="199" r="3.5" fill="#26418E"/>
   </g>
+  <rect class="focus-ring" id="focus3" x="14" y="92" width="276" height="92" fill="none" stroke="none"></rect>
 </svg>
 </div>
 
-<p class="cap" id="cap3"><b>証明書に、4項目そろっている</b>材質記号は図面どおり。ロット番号も記載されています。</p>
+<div class="cap" id="cap3">
+  <b>証明書に、4項目そろっている</b>
+  <span>材質記号は図面どおり。ロット番号も記載されています。</span>
+</div>
 
 <div class="bar">
   <button id="next3">次へ</button>
@@ -572,6 +602,16 @@ var CAPS=[
 ["4項目の照合を、同時に行う","見比べる内容は同じです。かかる時間だけが変わります。"],
 ["材質記号とロット番号を、人が確認する","規格と板厚は一致しています。この2件は自動で確定しません。"]
 ];
+var FOCUS=[
+  {x:8,y:4,w:288,h:80,label:'図面・仕様'},
+  {x:8,y:88,w:288,h:112,label:'材料証明書'},
+  {x:14,y:92,w:276,h:92,label:'4項目の照合'},
+  {x:8,y:200,w:354,h:88,label:'受入検査から出荷まで'},
+  {x:16,y:136,w:276,h:50,label:'通ってしまった2件'},
+  {x:216,y:188,w:140,h:148,label:'ロットの追跡'},
+  {x:14,y:92,w:276,h:92,label:'同時照合'},
+  {x:16,y:136,w:276,h:50,label:'人が確認する2件'}
+];
 var step=0,MAX=7,timers=[],loaded=false;
 var els=document.querySelectorAll('.st');
 var tieEls=['t1','t2','t3','t4'].map(function(i){return document.getElementById(i);});
@@ -593,8 +633,13 @@ var CAPS3=[
 ["人に上がる項目がない","そのまま承認され、次の工程へ渡ります。"],
 ["不具合が出ても、範囲を絞れる","記録に残ったロット番号から、対象の材料を特定できます。"]
 ];
+var FOCUS3=[
+  {x:14,y:92,w:276,h:92,label:'4項目の照合'},
+  {x:8,y:200,w:354,h:88,label:'受入検査から出荷まで'},
+  {x:216,y:188,w:140,h:148,label:'ロットの追跡'}
+];
 var s3=0,M3=2,t3timers=[];
-var autoTimer=null,paused=true,capSwapTimer=null;
+var autoTimer=null,paused=true,capSwapTimer=null,cap3SwapTimer=null;
 var sceneDur=[4000,4000,5000,5000,5000,5000,5000,6000];
 var toggle=document.getElementById('toggle');
 var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -614,16 +659,65 @@ function setTies(mode){
   }
 }
 function clearTimers(){for(var i=0;i<timers.length;i++){clearTimeout(timers[i]);}timers=[];}
+function capHtml(copy){
+  return '<b>'+copy[0]+'</b><span>'+copy[1]+'</span>';
+}
+function setFocusRect(rect, focus){
+  if(!rect||!focus) return;
+  rect.setAttribute('x', focus.x);
+  rect.setAttribute('y', focus.y);
+  rect.setAttribute('width', focus.w);
+  rect.setAttribute('height', focus.h);
+}
+function drawSceneLink(overlay, ring, card){
+  if(!overlay||!ring||!card) return;
+  overlay.replaceChildren();
+  if(window.matchMedia('(max-width:759px)').matches) return;
+  var root=overlay.parentElement;
+  if(!root) return;
+  var rr=root.getBoundingClientRect();
+  var fr=ring.getBoundingClientRect();
+  var heading=card.querySelector('b')||card;
+  var cr=heading.getBoundingClientRect();
+  if(fr.width<4||cr.width<4) return;
+  var x1=fr.right-rr.left;
+  var y1=fr.top+fr.height/2-rr.top;
+  var x2=cr.left-rr.left-6;
+  var y2=cr.top+cr.height/2-rr.top;
+  if(x2<=x1+8) return;
+  var mid=x1+(x2-x1)*0.55;
+  var ns='http://www.w3.org/2000/svg';
+  var path=document.createElementNS(ns,'path');
+  path.setAttribute('d','M'+x1+' '+y1+' C '+mid+' '+y1+', '+mid+' '+y2+', '+x2+' '+y2);
+  path.setAttribute('fill','none');
+  path.setAttribute('stroke','#26418E');
+  path.setAttribute('stroke-width','1.4');
+  overlay.appendChild(path);
+}
+function syncSceneCue(which){
+  if(which!==3){
+    setFocusRect(document.getElementById('focus1'), FOCUS[step]);
+    drawSceneLink(document.getElementById('scene-link'), document.getElementById('focus1'), cap);
+  }
+  if(which!==1){
+    setFocusRect(document.getElementById('focus3'), FOCUS3[s3]);
+    drawSceneLink(document.getElementById('scene-link3'), document.getElementById('focus3'), cap3);
+  }
+}
 function crossfadeText(el,html){
-  if(capSwapTimer){clearTimeout(capSwapTimer);}
+  var is3=el===cap3;
+  var prev=is3?cap3SwapTimer:capSwapTimer;
+  if(prev){clearTimeout(prev);}
   el.classList.remove('scene-ready');
   el.classList.add('scene-refresh');
-  capSwapTimer=setTimeout(function(){
+  var id=setTimeout(function(){
     el.innerHTML=html;
     el.classList.remove('scene-refresh');
     el.classList.add('scene-ready');
-    capSwapTimer=null;
+    if(is3){cap3SwapTimer=null;}else{capSwapTimer=null;}
+    syncSceneCue();
   },180);
+  if(is3){cap3SwapTimer=id;}else{capSwapTimer=id;}
 }
 function scheduleAuto(){
   if(paused||step>=MAX){return;}
@@ -662,9 +756,10 @@ function render(prev){
   }
   if(step===MAX){outro();}
   else{clearTimers();telop.classList.remove('mount','on');openrec.classList.remove('mount','on');}
-  crossfadeText(cap,'<b>'+CAPS[step][0]+'</b>'+CAPS[step][1]);
+  crossfadeText(cap, capHtml(CAPS[step]));
   count.textContent=(step+1)+' / '+(MAX+1);
   next.disabled=(step>=MAX);
+  syncSceneCue(1);
 }
 function drawTie3(){
   for(var i=0;i<tie3.length;i++){
@@ -682,9 +777,10 @@ function render3(){
     var f=parseInt(els3[i].getAttribute('data-from'),10);
     if(s3>=f){els3[i].classList.add('on');}else{els3[i].classList.remove('on');}
   }
-  crossfadeText(cap3,'<b>'+CAPS3[s3][0]+'</b>'+CAPS3[s3][1]);
+  crossfadeText(cap3, capHtml(CAPS3[s3]));
   count3.textContent=(s3+1)+' / '+(M3+1);
   next3.disabled=(s3>=M3);
+  syncSceneCue(3);
   for(var t=0;t<t3timers.length;t++){clearTimeout(t3timers[t]);}
   t3timers=[];
   if(s3===M3){
@@ -736,6 +832,7 @@ back3.addEventListener('click',function(){
   step=0; clearTimers(); if(autoTimer){clearTimeout(autoTimer);autoTimer=null;} paused=true;toggle.textContent='再生'; render(99); window.scrollTo(0,0); setTies('off');
 });
 render(-1); render3();
+window.addEventListener('resize', function(){ syncSceneCue(); });
 </script>
 </body>
 </html>
