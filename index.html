@@ -8,6 +8,12 @@
   <meta name="description" content="図面と材料証明書を照合し、確認根拠を承認に残す受入検査デモ">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="src/demo-intro/intro.css">
+  <script>
+    if (new URLSearchParams(location.search).get('embed') === 'intro') {
+      document.documentElement.classList.add('ap-embed-intro');
+    }
+  </script>
 </head>
 <body class="landing">
 <header class="topbar"><a class="brand" href="index.html"><b>受入検査 AIサポート</b></a></header>
@@ -59,5 +65,16 @@
 })();
 </script>
 <script src="preview.js"></script>
+<script type="module">
+  if (document.documentElement.classList.contains('ap-embed-intro')) {
+    document.body.className = 'ap-embed-intro';
+    document.body.replaceChildren();
+    const host = document.createElement('div');
+    host.id = 'ap-intro-root';
+    document.body.append(host);
+    const { mountIntro } = await import('./src/demo-intro/intro.js');
+    mountIntro(host);
+  }
+</script>
 </body>
 </html>
