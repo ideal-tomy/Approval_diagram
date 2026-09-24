@@ -1,11 +1,12 @@
 /** @typedef {readonly [number, number, number]} Camera */
 /** @typedef {"match" | "hold" | "approval" | "standard"} DeviceId */
 
-/** @type {{ title: string; caption: string; duration: number; camera: Camera; stars: readonly DeviceId[] }[]} */
+/** @type {{ title: string; caption: string; motion: string; duration: number; camera: Camera; stars: readonly DeviceId[] }[]} */
 export const scenes = [
   {
     title: "照合を開く",
     caption: "図面と証明書を並べて、差分を3つに分けます。",
+    motion: "照合を開く",
     duration: 5500,
     camera: [284, 175, 1.15],
     stars: ["match"],
@@ -13,6 +14,7 @@ export const scenes = [
   {
     title: "保留へ",
     caption: "一致した項目は下り、人が見るものだけが残ります。",
+    motion: "保留へ",
     duration: 4500,
     camera: [556, 175, 0.9],
     stars: ["match", "hold"],
@@ -20,6 +22,7 @@ export const scenes = [
   {
     title: "保留理由",
     caption: "材質記号とロット番号が、保留に並びます。",
+    motion: "保留理由",
     duration: 5500,
     camera: [828, 175, 1.12],
     stars: ["hold"],
@@ -27,6 +30,7 @@ export const scenes = [
   {
     title: "承認へ",
     caption: "確認した根拠を、承認記録へ残します。",
+    motion: "承認へ",
     duration: 4500,
     camera: [1100, 175, 0.9],
     stars: ["hold", "approval"],
@@ -34,6 +38,7 @@ export const scenes = [
   {
     title: "承認記録",
     caption: "何を見て承認したかが、後から追えます。",
+    motion: "承認記録",
     duration: 5500,
     camera: [1372, 175, 1.12],
     stars: ["approval"],
@@ -41,6 +46,7 @@ export const scenes = [
   {
     title: "基準へ",
     caption: "見つかった不足は、検査基準へ戻します。",
+    motion: "基準へ",
     duration: 4500,
     camera: [1644, 175, 0.9],
     stars: ["approval", "standard"],
@@ -48,6 +54,7 @@ export const scenes = [
   {
     title: "基準改定",
     caption: "ロット番号を必須にして、同じ漏れを防ぎます。",
+    motion: "基準改定",
     duration: 5500,
     camera: [1916, 175, 1.12],
     stars: ["standard"],

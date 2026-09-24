@@ -288,6 +288,41 @@ html.ap-embed-intro .ap-viewport {
   min-height: 360px;
 }
 
+/* 操作画面だけ（?embed=intro&view=stage） */
+html.ap-embed-stage-root,
+html.ap-embed-stage-root body,
+html.ap-embed-stage,
+html.ap-embed-stage body,
+body.ap-embed-stage,
+.ap-intro-stage {
+  margin: 0;
+  min-height: 0 !important;
+  background: #fff !important;
+  overflow: visible;
+}
+.ap-intro-stage {
+  border-radius: 0;
+  box-shadow: none;
+  color: #1c2740;
+  display: block;
+}
+.ap-intro-stage .ap-viewport {
+  height: 360px;
+  min-height: 360px;
+  flex: none;
+  background: #fff;
+}
+.ap-motion {
+  margin: 12px auto 0;
+  max-width: 580px;
+  padding: 0 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.7;
+  color: #26418e;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ap-intro *, .ap-intro *::before, .ap-intro *::after {
     transition: none !important;

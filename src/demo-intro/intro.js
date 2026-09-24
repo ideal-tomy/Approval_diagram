@@ -1,11 +1,15 @@
 import { scenes, storyFrame, totalDuration } from "./story.js";
 import { renderScreens } from "./screens.js";
 
-/** @type {{ root: HTMLElement; clock: number; paused: boolean; reduced: boolean; visible: boolean; width: number; height: number; raf: number; last?: number; observer?: ResizeObserver; onMotion?: () => void; onVisibility?: () => void; onClick?: (e: Event) => void } | null} */
+/** @type {{ root: HTMLElement; clock: number; paused: boolean; reduced: boolean; visible: boolean; width: number; height: number; stageView: boolean; raf: number; last?: number; observer?: ResizeObserver; onMotion?: () => void; onVisibility?: () => void; onClick?: (e: Event) => void } | null} */
 let live = null;
 
 function fitFor(count) {
   return count >= 2 ? 1100 : 560;
+}
+
+function isStageView() {
+  return new URLSearchParams(location.search).get("view") === "stage";
 }
 
 /**
@@ -14,11 +18,19 @@ function fitFor(count) {
 export function mountIntro(host) {
   unmountIntro();
 
+  const stageView = isStageView();
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const root = document.createElement("section");
-  root.className = "ap-intro";
+  root.className = stageView ? "ap-intro ap-intro-stage" : "ap-intro";
   root.setAttribute("aria-label", "受入検査の照合と承認の使い方");
-  root.innerHTML = `
+  root.innerHTML = stageView
+    ? `
+    <div class="ap-viewport" data-scene="0" data-time="0" data-paused="false">
+      <div class="ap-stage" aria-hidden="true" inert></div>
+    </div>
+    <p class="ap-motion" hidden></p>
+  `
+    : `
     <div class="ap-intro-top"><span>使い方を見てみる</span><span>約36秒 · 架空データでの紹介</span></div>
     <div class="ap-viewport" data-scene="0" data-time="0" data-paused="false">
       <div class="ap-stage" aria-hidden="true" inert></div>
@@ -37,13 +49,19 @@ export function mountIntro(host) {
   `;
   host.appendChild(root);
 
+  if (stageView) {
+    document.documentElement.classList.add("ap-embed-stage-root");
+    document.body.classList.add("ap-embed-stage-root");
+  }
+
   const viewport = /** @type {HTMLElement} */ (root.querySelector(".ap-viewport"));
   const stage = /** @type {HTMLElement} */ (root.querySelector(".ap-stage"));
-  const caption = /** @type {HTMLElement} */ (root.querySelector(".ap-hud p"));
+  const caption = /** @type {HTMLElement|null} */ (root.querySelector(".ap-hud p"));
   const dots = [...root.querySelectorAll(".ap-dots span")];
-  const status = /** @type {HTMLElement} */ (root.querySelector(".ap-status"));
-  const pauseBtn = /** @type {HTMLButtonElement} */ (root.querySelector('[data-ap="pause"]'));
-  const btns = /** @type {HTMLElement} */ (root.querySelector(".ap-btns"));
+  const status = /** @type {HTMLElement|null} */ (root.querySelector(".ap-status"));
+  const pauseBtn = /** @type {HTMLButtonElement|null} */ (root.querySelector('[data-ap="pause"]'));
+  const btns = /** @type {HTMLElement|null} */ (root.querySelector(".ap-btns"));
+  const motionEl = /** @type {HTMLElement|null} */ (root.querySelector(".ap-motion"));
 
   live = {
     root,
@@ -53,6 +71,7 @@ export function mountIntro(host) {
     visible: !document.hidden,
     width: viewport.getBoundingClientRect().width || 720,
     height: viewport.getBoundingClientRect().height || 424,
+    stageView,
     raf: 0,
   };
   /** @type {string} */
@@ -74,24 +93,35 @@ export function mountIntro(host) {
       stage.innerHTML = renderScreens({ stars });
       screenKey = nextKey;
     }
-    const midY = live.height * 0.4;
+    const midY = live.stageView ? live.height / 2 : live.height * 0.4;
     stage.style.transform = `translate(${live.width / 2 - camera[0] * scale}px, ${midY - camera[1] * scale}px) scale(${scale})`;
 
-    caption.textContent = scenes[index].caption;
-    dots.forEach((dot, i) => dot.classList.toggle("ap-current", i === index));
+    if (live.stageView && motionEl) {
+      const motion = scenes[index].motion;
+      if (motion) {
+        motionEl.hidden = false;
+        motionEl.textContent = motion;
+      } else {
+        motionEl.hidden = true;
+        motionEl.textContent = "";
+      }
+    } else if (caption && status && btns && pauseBtn) {
+      caption.textContent = scenes[index].caption;
+      dots.forEach((dot, i) => dot.classList.toggle("ap-current", i === index));
+      if (live.reduced) {
+        status.textContent = "動きを抑えた表示になっています";
+        btns.hidden = true;
+      } else {
+        status.textContent = `${index + 1} / ${scenes.length}　${scenes[index].title}`;
+        btns.hidden = false;
+        pauseBtn.textContent = live.paused ? "▶ 再生" : "Ⅱ 一時停止";
+        pauseBtn.setAttribute("aria-label", live.paused ? "紹介を再生する" : "紹介を一時停止する");
+      }
+    }
+
     viewport.dataset.scene = String(index);
     viewport.dataset.time = String(Math.round(live.clock));
     viewport.dataset.paused = String(live.paused || live.reduced);
-
-    if (live.reduced) {
-      status.textContent = "動きを抑えた表示になっています";
-      btns.hidden = true;
-    } else {
-      status.textContent = `${index + 1} / ${scenes.length}　${scenes[index].title}`;
-      btns.hidden = false;
-      pauseBtn.textContent = live.paused ? "▶ 再生" : "Ⅱ 一時停止";
-      pauseBtn.setAttribute("aria-label", live.paused ? "紹介を再生する" : "紹介を一時停止する");
-    }
   };
 
   const stopLoop = () => {
@@ -138,7 +168,7 @@ export function mountIntro(host) {
   };
   live.onClick = (e) => {
     const btn = /** @type {HTMLElement|null} */ (/** @type {HTMLElement} */ (e.target).closest("[data-ap]"));
-    if (!btn || !live) return;
+    if (!btn || !live || live.stageView) return;
     e.stopPropagation();
     if (btn.dataset.ap === "pause") {
       live.paused = !live.paused;
@@ -181,5 +211,9 @@ export function unmountIntro() {
   if (live.onVisibility) document.removeEventListener("visibilitychange", live.onVisibility);
   if (live.onClick) live.root.removeEventListener("click", live.onClick);
   live.root.remove();
+  if (live.stageView) {
+    document.documentElement.classList.remove("ap-embed-stage-root");
+    document.body.classList.remove("ap-embed-stage-root");
+  }
   live = null;
 }

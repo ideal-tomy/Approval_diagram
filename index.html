@@ -12,6 +12,9 @@
   <script>
     if (new URLSearchParams(location.search).get('embed') === 'intro') {
       document.documentElement.classList.add('ap-embed-intro');
+      if (new URLSearchParams(location.search).get('view') === 'stage') {
+        document.documentElement.classList.add('ap-embed-stage');
+      }
     }
   </script>
 </head>
@@ -67,7 +70,8 @@
 <script src="preview.js"></script>
 <script type="module">
   if (document.documentElement.classList.contains('ap-embed-intro')) {
-    document.body.className = 'ap-embed-intro';
+    const stage = document.documentElement.classList.contains('ap-embed-stage');
+    document.body.className = stage ? 'ap-embed-intro ap-embed-stage' : 'ap-embed-intro';
     document.body.replaceChildren();
     const host = document.createElement('div');
     host.id = 'ap-intro-root';
